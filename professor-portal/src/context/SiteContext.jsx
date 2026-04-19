@@ -115,6 +115,7 @@ lessons: [
           { id: 'net-l-ar-10', title: 'أساسيات Linux الأمنية - TryHackMe', description: 'وحدة تفاعلية لأساسيات Linux.', type: 'link', url: 'https://tryhackme.com/module/linux-fundamentals' },
           { id: 'net-l-ar-11', title: 'أمن الشبكات اللاسلكية - TryHackMe', description: 'وحدة تفاعلية لأمن الشبكات اللاسلكية.', type: 'link', url: 'https://tryhackme.com/module/wifi-hacking-101' },
           { id: 'net-l-ar-12', title: 'مقدمة لـ NIST Framework', description: 'الإطار الرسمي للأمن السيبراني.', type: 'link', url: 'https://www.nist.gov/cyberframework' },
+          { id: 'net-l-ar-13', title: 'منصة قُرْسان أكاديمية', description: 'موقع تعليمي يوفر دورات وموارد في إدارة وأمن الشبكات.', type: 'link', url: 'https://qursanacademy.github.io/academy/' },
         ],
 books: [
           { id: 'net-b-1', title: 'The TCP/IP Guide', description: 'Comprehensive reference on TCP/IP protocols.', type: 'ebook', url: 'http://www.tcpipguide.com/free/' },
