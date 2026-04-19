@@ -1,23 +1,31 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { translations } from '../data/translations';
 
 const LanguageContext = createContext(null);
 
-const languages = [
-  { code: 'ar', name: 'العربية', flag: '🇩🇿' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-];
-
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('ar');
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, languages }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  const [language, setLanguage] = useState(() => localStorage.getItem('portal-language') || 'ar');
+
+  useEffect(() => {
+    localStorage.setItem('portal-language', language);
+    const dir = translations[language]?.dir || 'ltr';
+    document.documentElement.lang = language;
+    document.documentElement.dir = dir;
+  }, [language]);
+
+  const value = useMemo(() => {
+    const t = translations[language] || translations.ar;
+    return { language, setLanguage, t };
+  }, [language]);
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {
-  return useContext(LanguageContext);
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used inside LanguageProvider');
+  }
+  return context;
 }
