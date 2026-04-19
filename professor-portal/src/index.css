@@ -1105,38 +1105,218 @@ spline-viewer {
   }
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Phone */
 @media (max-width: 768px) {
+  .navbar select {
+    padding: 0.25rem 0.35rem;
+    font-size: 0.7rem;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    gap: 0.15rem;
+  }
+
+  .nav-link svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  main {
+    padding: 0.75rem;
+    padding-top: 4.5rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    gap: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .hero-desc {
+    font-size: 0.8rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .domains-grid, .resources-grid, .useful-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .domain-card, .glass-card {
+    padding: 0.75rem;
+    margin: 0 0 0.75rem 0;
+    border-radius: 12px;
+  }
+
+  .domain-title {
+    font-size: 1rem;
+  }
+
+  .domain-desc {
+    font-size: 0.8rem;
+  }
+
+  .section {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .section-desc {
+    font-size: 0.8rem;
+  }
+
+  .resource-filters {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .resource-filter-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .resource-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resource-search-wrap input {
+    font-size: 0.85rem;
+  }
+
+  .resource-sort-select {
+    font-size: 0.8rem;
+  }
+
+  .contact-section {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    padding: 0.75rem;
+  }
+
+  .contact-form {
+    padding: 1rem;
+  }
+
+  .footer {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .dropdown-menu {
+    left: 0;
+    min-width: 150px;
+    max-width: 90vw;
+  }
+
+  .dropdown-item {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   .navbar {
     flex-wrap: wrap;
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
     gap: 0.5rem;
+    width: 100%;
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
   }
 
   .navbar-brand {
     min-width: auto;
+    flex-shrink: 0;
   }
 
   .brand-icon {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.25rem;
   }
 
   .brand-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .brand-sub {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
+    display: none;
   }
 
   .nav-links {
     order: 3;
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 0.25rem;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .nav-link {
