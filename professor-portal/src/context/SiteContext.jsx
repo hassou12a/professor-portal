@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'professor-portal-content-v2';
+const STORAGE_KEY = 'professor-portal-content-v3';
 
 const defaultContent = {
   profile: {
