@@ -210,6 +210,18 @@ body {
   /* Let events fall through to Spline */
 }
 
+/* Hide Spline on mobile to reduce load */
+@media (max-width: 768px) {
+  .global-spline-bg {
+    display: none;
+  }
+  .hero {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+}
+
 .global-spline-bg {
   position: fixed;
   top: -65vh;
