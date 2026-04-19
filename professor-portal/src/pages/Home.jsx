@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom'
 import { useSite } from '../context/SiteContext'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Home() {
   const { content, t } = useSite()
+  const { language } = useLanguage()
 
   return (
     <main className="home-page">
       <section className="hero-section">
         <div className="hero-content">
+          <img src="/avatar.png" alt={content.profile.fullName} className="hero-avatar" />
           <span className="hero-badge">{t.heroBadge}</span>
           <h1>{content.profile.fullName}</h1>
-          <p>{content.profile.role.en}</p>
-          <p className="hero-welcome">{content.profile.welcome.en}</p>
+          <p>{content.profile.role[language] || content.profile.role.en}</p>
+          <p className="hero-welcome">{content.profile.welcome[language] || content.profile.welcome.en}</p>
         </div>
       </section>
 
@@ -24,8 +27,8 @@ export default function Home() {
           {content.domains.map((domain) => (
             <Link key={domain.id} to={`/domain/${domain.id}`} className={`domain-card ${domain.colorClass}`}>
               <span className="domain-icon">{domain.icon}</span>
-              <h3>{domain.title.en}</h3>
-              <p>{domain.description.en}</p>
+              <h3>{domain.title[language] || domain.title.en}</h3>
+              <p>{domain.description[language] || domain.description.en}</p>
             </Link>
           ))}
         </div>
