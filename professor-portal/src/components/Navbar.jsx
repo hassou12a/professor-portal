@@ -1,20 +1,13 @@
-﻿import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { GraduationCap, BookOpen, Mail, ChevronRight, Globe, LayoutDashboard } from 'lucide-react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { GraduationCap, BookOpen, Mail, Globe, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { useSite } from '../context/SiteContext';
-
-function scrollToSection(navigate, location, id) {
-  if (location.pathname !== '/') {
-    navigate('/');
-    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 120);
-    return;
-  }
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-}
+import { useState } from 'react';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { language, setLanguage, t } = useSite();
+  const { language, setLanguage, t, content } = useSite();
+  const [domainsOpen, setDomainsOpen] = useState(false);
 
   return (
     <nav className="navbar">
@@ -30,16 +23,35 @@ export default function Navbar() {
         <NavLink to="/" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} end>
           <GraduationCap size={15} /> {t.home}
         </NavLink>
-        <button className="nav-link" onClick={() => scrollToSection(navigate, location, 'domains')}><BookOpen size={15} /> {t.domains}</button>
-        <button className="nav-link" onClick={() => scrollToSection(navigate, location, 'resources')}><Globe size={15} /> {t.resources}</button>
-        <button className="nav-link" onClick={() => scrollToSection(navigate, location, 'contact')}><Mail size={15} /> {t.contact}</button>
+
+        <div className="nav-dropdown">
+          <button className="nav-link" onClick={() => setDomainsOpen(!domainsOpen)}>
+            <BookOpen size={15} /> {t.domains} <ChevronDown size={12} />
+          </button>
+          {domainsOpen && (
+            <div className="dropdown-menu">
+              {content.domains.map((domain) => (
+                <NavLink
+                  key={domain.id}
+                  to={`/domain/${domain.id}`}
+                  className="dropdown-item"
+                  onClick={() => setDomainsOpen(false)}
+                >
+                  {domain.icon} {(domain.title[language] || domain.title.en).substring(0, 25)}
+                </NavLink>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <button className="nav-link" onClick={() => navigate('/#resources')}><Globe size={15} /> {t.resources}</button>
+        <button className="nav-link" onClick={() => navigate('/#contact')}><Mail size={15} /> {t.contact}</button>
         <NavLink to="/admin" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>
           <LayoutDashboard size={15} /> {t.admin}
         </NavLink>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-        <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{t.language}</label>
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
@@ -56,10 +68,6 @@ export default function Navbar() {
           <option value="fr">Francais</option>
         </select>
       </div>
-
-      <button className="nav-cta" onClick={() => scrollToSection(navigate, location, 'domains')}>
-        {t.explore} <ChevronRight size={14} />
-      </button>
     </nav>
   );
 }
